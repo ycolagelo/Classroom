@@ -19,39 +19,37 @@ function App() {
       <Router>
         <Header isAuthenticated={isAuthenticated} user="Mary" />
         {/* maxWidth="1400px" */}
-        <Box p={4}>
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/messages">
-              <Messages />
-            </Route>
-            <Route path="/clubs">
-              <Clubs />
-            </Route>
-            <Route path="/assignments">
-              <Assignments />
-            </Route>
-            <Route path="/scores">
-              <Scores />
-            </Route>
-            <Route path="/classmates">
-              <Classmates />
-            </Route>
-            <Route path="/profile">
-              <Profile />
-            </Route>
-            <Route path="login">
-              <Login />
-            </Route>
-            {/* 
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/messages">
+            <Messages />
+          </Route>
+          <Route path="/clubs">
+            <Clubs />
+          </Route>
+          <Route path="/assignments">
+            <Assignments />
+          </Route>
+          <Route path="/scores">
+            <Scores />
+          </Route>
+          <Route path="/classmates">
+            <Classmates />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="login">
+            <Login />
+          </Route>
+          {/* 
               This one will show if there is no above match (i.e. route not found) 
               It should always be the last one
             */}
-            <Route path="/">No page found</Route>
-          </Switch>
-        </Box>
+          <Route path="/">No page found</Route>
+        </Switch>
       </Router>
     </Box>
   );

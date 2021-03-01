@@ -1,6 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
 
-const defaultProps = {
+const defaultDefaultProps = {
   colorScheme: "purple",
 };
 
@@ -8,19 +8,23 @@ const theme = extendTheme({
   components: {
     Button: {
       baseStyle: {},
-      defaultProps,
+      defaultProps: defaultDefaultProps,
     },
     Checkbox: {
       baseStyle: {},
-      defaultProps,
+      defaultProps: defaultDefaultProps,
     },
     Input: {
       baseStyle: {},
-      defaultProps,
+      defaultProps: { ...defaultDefaultProps, focusBorderColor: "purple.300" },
+    },
+    Textarea: {
+      defaultProps: { ...defaultDefaultProps, focusBorderColor: "purple.300" },
+      baseStyle: {},
     },
     Link: {
       baseStyle: {},
-      defaultProps,
+      defaultProps: defaultDefaultProps,
     },
   },
 });

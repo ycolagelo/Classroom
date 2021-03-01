@@ -12,8 +12,10 @@ import {
   MenuItem,
   Image,
   Heading,
+  IconButton,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import { EmailIcon } from "@chakra-ui/icons";
 
 function NavItem({ ...props }) {
   return <Box px={2} {...props} />;
@@ -61,7 +63,14 @@ function NavLink({ to, children, ...props }) {
 
 export function Header({ isAuthenticated, user }) {
   return (
-    <Flex p={4} justifyContent="space-between" bg="purple.200">
+    <Flex
+      position="sticky"
+      top={0}
+      p={4}
+      zIndex={99}
+      justifyContent="space-between"
+      bg="purple.200"
+    >
       {/* Left Side */}
       <HStack>
         <Brand>
@@ -123,7 +132,7 @@ export function Header({ isAuthenticated, user }) {
               </Menu>
             </NavItem>
             <NavItem>
-              <NavLink to={"/messages"}>Messages</NavLink>
+              <NavLink to={"/messages"}>{<EmailIcon />}</NavLink>
             </NavItem>
           </>
         )}

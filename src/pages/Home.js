@@ -12,7 +12,7 @@ import {
   Stack,
   SimpleGrid,
 } from "@chakra-ui/react";
-import { Card } from "../components/card";
+import { ChatIcon } from "@chakra-ui/icons";
 
 export function Home() {
   return (
@@ -20,7 +20,15 @@ export function Home() {
       <Box>
         <CardList />
       </Box>
+
       <Message title="Date:2021/4/30">
+        This is what we are studying today because it is so cool.This is what we
+        are studying today because it is so cool. This is what we are studying
+        today because it is so cool.This is what we are studying today because
+        it is so cool.This is what we are studying today because it is so
+        cool.This is what we are studying today because it is so cool.
+      </Message>
+      <Message title=" Science Date:2021/4/30">
         This is what we are studying today because it is so cool.This is what we
         are studying today because it is so cool. This is what we are studying
         today because it is so cool.This is what we are studying today because
@@ -31,18 +39,22 @@ export function Home() {
   );
 }
 
-function Message({ title, children, ...props }) {
+function Message({ title, date, children, ...props }) {
   return (
     <Box
       mt={7}
       borderBottom="2px"
       borderBottomColor="purple.50"
       bg="gray.50"
-      p={6}
+      p={4}
       {...props}
     >
       <Text fontSize="xl">{title}</Text>
-      <Text>{children}</Text>
+      <Text fontSize="xl">{date}</Text>
+      <Text pb={4}>{children}</Text>
+      <Link color="purple.700" _focus={{ color: "gray.900" }}>
+        <ChatIcon />
+      </Link>
     </Box>
   );
 }
