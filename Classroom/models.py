@@ -1,26 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+# from datetime import timedelta
+from datetime import datetime
 
-# Create your models here.
 
-
-class User(models.Model):
+class User(AbstractUser):
     """users database is written by the superuser/teacher.
      The students are predetermined by the teacher"""
-    name = models.CharField(max_length=100, null=False)
-    email = models.CharField(max_length=400, null=False)
-    password = models.CharField(max_length=40, null=False)
     teacher = models.CharField(max_length=30, default="Mr. Thompson")
-
-    def serialize(self):
-        return {
-            "name": self.name,
-            "email": self.email,
-            "password": self.password,
-            "teacher": self. teacher
-        }
-
-    def __str__(self):
-        return f"{self.name}"
 
 
 class Subject(models.Model):
@@ -37,13 +24,18 @@ class Lesson(models.Model):
         Subject, on_delete=models.PROTECT)
     topic = models.CharField(max_length=50, null=False, default="topic")
     lesson = models.CharField(max_length=500, null=False,)
-    date = models.DateTimeField(auto_now_add=True)
+    start_date = models.DateField(auto_now_add=True)
+    end_date = models.DateField(default=datetime.now(), blank=True)
+    # end_date = models.DateField(default=start_date + timedelta(days=15))
 
     def serialize(self):
         return {
-            "subject": self.subject,
+            "id": self.id,
+            "subject": self.subject.subject,
             "lesson": self.lesson,
-            "date": self.date
+            "start_date": self.start_date,
+            "end_date": self.end_date,
+            "topic": self.topic
         }
 
     def __str__(self):
@@ -63,10 +55,13 @@ class Comment(models.Model):
 
     def serialize(self):
         return {
-            "lesson": self.lesson,
-            "user": self.user.name,
+            "id": self.id,
+            "lesson": self.lesson.serialize(),
+            "user": self.user.get_full_name(),
             "comment": self.comment
         }
+
+    # def serialize_with_userinfo(self, user):
 
 
 class Club(models.Model):
@@ -85,7 +80,7 @@ class Member(models.Model):
     def serialize(self):
         return {
 
-            "user": self.user.name,
+            "user": self.user.get_full_name(),
             "club": self.club
         }
 
@@ -116,13 +111,13 @@ class UserAssignment(models.Model):
     def serialize(self):
         return {
             "assignment": self.assignment.id,
-            "user": self.user.name,
+            "user": self.user.get_full_name(),
             "status": self.status,
             "completed": self.completed_assignment
         }
 
     def __str__(self):
-        return f"{self.user.name}"
+        return f"{self.user.get_full_name()}"
 
 
 class Grade(models.Model):
@@ -148,4 +143,4 @@ class Hobby(models.Model):
     hobbies = models.CharField(max_length=80)
 
     def __str__(self):
-        return f"{self.user.name}"
+        return f"{self.user.get_full_name()}"

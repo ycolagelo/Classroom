@@ -23,6 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '2k=mfin+6*a*hzz&x3=m4af1ysdl29*s4dxu-$6acvhwys3c&f'
 
+AUTH_USER_MODEL = "Classroom.User"
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

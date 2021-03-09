@@ -4,12 +4,13 @@ from django.contrib import admin
 from .models import User, Lesson, Subject, Comment, Club, Member, Assignment, UserAssignment, Grade, Profile, Hobby
 
 
-class UserAdmin(admin.ModelAdmin):
-    list_display = ("name", "email", "password", "teacher")
+# class UserAdmin(admin.ModelAdmin):
+#     pass
+# list_display = ("finame", "email", "teacher")
 
 
 class LessonAdmin(admin.ModelAdmin):
-    list_display = ("subject", "topic", "lesson", "date")
+    list_display = ("subject", "topic", "lesson", "start_date", "end_date")
 
 
 class CommentAdmin(admin.ModelAdmin):
@@ -44,7 +45,7 @@ class HobbiesAdmin(admin.ModelAdmin):
     list_display = ("user", "hobbies")
 
 
-admin.site.register(User, UserAdmin)
+admin.site.register(User)
 admin.site.register(Subject)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(Club, ClubsAdmin)

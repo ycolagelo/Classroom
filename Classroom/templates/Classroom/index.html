@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Classroom</title>
+</head>
+
+<body>
+    <div id="root">
+        <!-- React will load here -->
+    </div>
+
+    {% load static %}
+
+    {{user_info | json_script:"user_info"}}
+    <!-- Load in the main read bundle (main.js) -->
+    <script src="{% static "Classroom/react/js/bundle.js" %}"></script>
+    <script src="{% static "Classroom/react/js/vendors~main.chunk.js" %}"></script>
+    <script src="{% static "Classroom/react/js/main.chunk.js" %}"></script>
+</body>
+
+</html>
