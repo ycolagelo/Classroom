@@ -1,6 +1,7 @@
 import { React } from "react";
 
 import { Box, Center, Image, Text } from "@chakra-ui/react";
+import { getStaticUrl } from "../utils/static-url-util";
 
 export function SlidesCard({ ...props }) {
   return (
@@ -9,7 +10,7 @@ export function SlidesCard({ ...props }) {
         <Image
           borderRadius="full"
           boxSize="150px"
-          src="/google-slides.png"
+          src={getStaticUrl("/images/google-slides.png")}
           alt="Google icon"
         />
       </Center>

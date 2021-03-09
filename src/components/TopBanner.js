@@ -1,12 +1,13 @@
 import { React } from "react";
 
 import { Box, Center, Heading } from "@chakra-ui/react";
+import { getStaticUrl } from "../utils/static-url-util";
 
 export function TopBanner({ ...props }) {
   return (
     <Box
       height="160px"
-      backgroundImage="url(/cartoon-background.jpg)"
+      backgroundImage={`url(${getStaticUrl("/images/cartoon-background.jpg")})`}
       backgroundRepeat="repeat-x"
       {...props}
     >

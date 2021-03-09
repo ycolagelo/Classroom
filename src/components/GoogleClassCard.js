@@ -1,6 +1,7 @@
 import { React } from "react";
 
 import { Box, Center, Text, Image } from "@chakra-ui/react";
+import { getStaticUrl } from "../utils/static-url-util";
 
 export function GoogleClassCard({ ...props }) {
   return (
@@ -10,7 +11,7 @@ export function GoogleClassCard({ ...props }) {
           p={4}
           borderRadius="full"
           boxSize="150px"
-          src="/google-icon.png"
+          src={getStaticUrl("/images/google-icon.png")}
           alt="Google icon"
         />
       </Center>

@@ -11,13 +11,11 @@ import { Classmates } from "./pages/Classmates";
 import { Profile } from "./pages/Profile";
 import { Login } from "./pages/Login";
 
-const isAuthenticated = true;
-
 function App() {
   return (
     <Box color="gray.900" fontFamily="body" fontSize="md">
       <Router>
-        <Header isAuthenticated={isAuthenticated} user="Mary" />
+        <Header />
         {/* maxWidth="1400px" */}
         <Switch>
           <Route exact path="/">

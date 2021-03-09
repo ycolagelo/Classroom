@@ -34,14 +34,7 @@ export function Profile() {
           likes play.She is an awesome girl and likes play.She is an awesome
           girl and likes play.
         </Text>
-        <Button
-          for="text box"
-          ml={3}
-          mb={3}
-          height="30px"
-          mt={4}
-          color="gray.200"
-        >
+        <Button ml={3} mb={3} height="30px" mt={4} color="gray.200">
           Edit
         </Button>
       </Box>
@@ -55,14 +48,7 @@ export function Profile() {
           <ListItem>Reading</ListItem>
           <ListItem>Swimming</ListItem>
         </UnorderedList>
-        <Button
-          for="text box"
-          ml={3}
-          mb={3}
-          height="30px"
-          mt={4}
-          color="gray.200"
-        >
+        <Button ml={3} mb={3} height="30px" mt={4} color="gray.200">
           Add Hobby
         </Button>
       </Box>

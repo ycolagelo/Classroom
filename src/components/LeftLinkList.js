@@ -1,6 +1,7 @@
 import { React } from "react";
 
 import { SimpleGrid, Flex, Image, Link } from "@chakra-ui/react";
+import { getStaticUrl } from "../utils/static-url-util";
 
 export function LeftLinkList({ ...props }) {
   return (
@@ -10,7 +11,7 @@ export function LeftLinkList({ ...props }) {
           <Image
             boxSize="100px"
             objectFit="cover"
-            src="/career-cruising.jpg"
+            src={getStaticUrl("/images/career-cruising.jpg")}
             p={4}
             borderRadius="3xl"
           />
@@ -24,7 +25,7 @@ export function LeftLinkList({ ...props }) {
           <Image
             boxSize="100px"
             objectFit="cover"
-            src="/math-playground.png"
+            src={getStaticUrl("/images/math-playground.png")}
             p={4}
             borderRadius="3xl"
           />
@@ -38,7 +39,7 @@ export function LeftLinkList({ ...props }) {
           <Image
             boxSize="100px"
             objectFit="cover"
-            src="/Khan-academy.jfif"
+            src={getStaticUrl("/images/Khan-academy.jfif")}
             p={4}
             borderRadius="3xl"
           />
@@ -52,7 +53,7 @@ export function LeftLinkList({ ...props }) {
           <Image
             boxSize="100px"
             objectFit="cover"
-            src="/math-thumb.jfif"
+            src={getStaticUrl("/images/math-thumb.jfif")}
             p={4}
             borderRadius="3xl"
           />

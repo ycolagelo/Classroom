@@ -38,7 +38,7 @@ export function Messages() {
   return (
     <>
       <Stack direction="row" spacing={4}>
-        <EmailList users={mockUsers} />
+        <EmailList users={mockUsers} display={{ base: "none", md: "flex" }} />
         <Stack py={4} pr={4} w="full">
           <MessageForm />
           <MessageHistory title="I need help" date="Date:2021/4/30">

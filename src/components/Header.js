@@ -12,10 +12,11 @@ import {
   MenuItem,
   Image,
   Heading,
-  IconButton,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { EmailIcon } from "@chakra-ui/icons";
+import { getStaticUrl } from "../utils/static-url-util";
+import { getUser, isAuthenticated, getUserInitials } from "../utils/user-util";
 
 function NavItem({ ...props }) {
   return <Box px={2} {...props} />;
@@ -61,7 +62,10 @@ function NavLink({ to, children, ...props }) {
   );
 }
 
-export function Header({ isAuthenticated, user }) {
+export function Header() {
+  const authenticated = isAuthenticated();
+  const userInitials = getUserInitials();
+
   return (
     <Flex
       position="sticky"
@@ -70,6 +74,7 @@ export function Header({ isAuthenticated, user }) {
       zIndex={99}
       justifyContent="space-between"
       bg="purple.200"
+      height="82px"
     >
       {/* Left Side */}
       <HStack>
@@ -87,7 +92,7 @@ export function Header({ isAuthenticated, user }) {
                   fontWeight="normal"
                   borderRadius="full"
                   boxSize="50px"
-                  src="/school-logo.png"
+                  src={getStaticUrl("/images/school-logo.png")}
                   alt="school logo"
                   height="30px"
                   width="30px"
@@ -99,7 +104,7 @@ export function Header({ isAuthenticated, user }) {
             </Flex>
           </NavLink>
         </Brand>
-        {isAuthenticated && (
+        {authenticated && (
           <NavItem>
             <Menu>
               <NavLink as={MenuButton}>
@@ -115,7 +120,7 @@ export function Header({ isAuthenticated, user }) {
             </Menu>
           </NavItem>
         )}
-        {isAuthenticated && (
+        {authenticated && (
           <>
             <NavItem>
               <Menu>
@@ -140,7 +145,7 @@ export function Header({ isAuthenticated, user }) {
 
       {/* Right Side */}
       <HStack className="flex justify-end">
-        {isAuthenticated ? (
+        {authenticated ? (
           <>
             <NavItem>
               <Menu>
@@ -152,11 +157,25 @@ export function Header({ isAuthenticated, user }) {
                   fontWeight="bold"
                   fontSize="lg"
                 >
-                  MJ
+                  {userInitials.first}
+                  {userInitials.last}
                 </Circle>
                 <MenuList>
                   <StyledMenuItem to="/profile">Profile</StyledMenuItem>
-                  <StyledMenuItem tp="logout">Log Out</StyledMenuItem>
+                  <form method="post" action="/logout">
+                    <StyledMenuItem as="div">
+                      <button
+                        type="submit"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          textAlign: "left",
+                        }}
+                      >
+                        Log Out
+                      </button>
+                    </StyledMenuItem>
+                  </form>
                 </MenuList>
               </Menu>
             </NavItem>
@@ -164,7 +183,9 @@ export function Header({ isAuthenticated, user }) {
         ) : (
           <>
             <NavItem>
-              <NavLink href="/login">Log In</NavLink>
+              <NavLink href="/login" as="a">
+                Log In
+              </NavLink>
             </NavItem>
           </>
         )}
