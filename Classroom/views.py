@@ -6,9 +6,9 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.db import IntegrityError
 from django.shortcuts import render
 from django.urls import reverse
-from .models import User, Lesson, Comment
+from .models import User, Lesson, Comment, Profile, Hobby
 from .helpers import serialize_array
-from datetime import timedelta
+from .decorators import ajax_login_required
 
 
 def index(request):
@@ -24,6 +24,10 @@ def index(request):
     return render(request, 'Classroom/index.html', {
         'user_info': user_info
     })
+
+
+# def handle_page_not_found(request, ex):
+#     return index(request)
 
 
 def login_view(request):
@@ -88,7 +92,10 @@ def get_lessons(request):
 
     return JsonResponse(serialize_array(lessons), safe=False)
 
+# TODO: Put the login required on the things that require login!
 
+
+@ajax_login_required
 @csrf_exempt
 def update_lesson_comment(request, lesson_id):
     if request.method == "POST":
@@ -103,7 +110,32 @@ def update_lesson_comment(request, lesson_id):
         return JsonResponse(post.serialize(), safe=False)
 
 
+@ajax_login_required
 def get_comments(request, lesson_id):
     """return all the comments for a specific lesson"""
-    comments = Comment.objects.filter(lesson=lesson_id)
+    comments = Comment.objects.filter(lesson=lesson_id).order_by('-comment')
     return JsonResponse(serialize_array(comments), safe=False)
+
+
+@ajax_login_required
+def get_user_profile(request):
+    """returns both profile and hobbies of the current user"""
+    user = request.user
+    user_information = Profile.objects.get(user=user)
+    user_hobbies = Hobby.objects.filter(user=user)
+
+    return JsonResponse({'user_information': user_information.serialize(),
+                         'user_hobbies': serialize_array(user_hobbies)},
+                        safe=False)
+
+
+# @ajax_login_required
+# def profile(request):
+#     user = request.user
+#     if user.is_authenticated:
+#         user_information = Profile.objects.filter(user=user)
+#     else:
+#         user_information = None
+#     return render(request, 'Classroom/profile.html', {
+#         'user_information': serialize_array(user_information)
+#     })

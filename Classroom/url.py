@@ -12,9 +12,14 @@ urlpatterns = [
     path("api/lessons", views.get_lessons),
     path("api/update_lesson_comment/<int:lesson_id>",
          views.update_lesson_comment),
-    path("api/get_comments/<int:lesson_id>", views.get_comments)
+    path("api/get_comments/<int:lesson_id>", views.get_comments),
+    path("api/user_profile", views.get_user_profile),
+
+    # This should always be the last path in the list
+    path('/*', views.index, name="fallback_index")
 ]
 
+# handler404 = 'Classroom.views.handle_page_not_found'
 
 # if settings.DEBUG:
 #     urlpatterns += static(settings.STATIC_URL,

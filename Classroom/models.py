@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 # from datetime import timedelta
 from datetime import datetime
+from django.utils import timezone
 
 
 class User(AbstractUser):
@@ -134,6 +135,17 @@ class Profile(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.PROTECT)
     user_info = models.CharField(max_length=800)
+    user_age = models.IntegerField(default=0)
+    user_grade = models.CharField(max_length=30, default="5/6")
+
+    def serialize(self):
+        return{
+            "id": self.id,
+            "user": self.user.get_full_name(),
+            "userInfo": self.user_info,
+            "user_age": self.user_age,
+            "user_grade": self.user_grade
+        }
 
 
 class Hobby(models.Model):
@@ -141,6 +153,13 @@ class Hobby(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.PROTECT, related_name="student")
     hobbies = models.CharField(max_length=80)
+
+    def serialize(self):
+        return{
+            "id": self.id,
+            "user": self.user.get_full_name(),
+            "hobbies": self.hobbies
+        }
 
     def __str__(self):
         return f"{self.user.get_full_name()}"

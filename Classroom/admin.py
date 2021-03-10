@@ -38,7 +38,7 @@ class GradesAdmin(admin.ModelAdmin):
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ("user", "user_info",)
+    list_display = ("user", "user_info", "user_age", "user_grade")
 
 
 class HobbiesAdmin(admin.ModelAdmin):
