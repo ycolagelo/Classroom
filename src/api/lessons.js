@@ -1,13 +1,5 @@
-export function getLessons() {
-  return fetch("/api/lessons").then((response) => response.json());
-}
+import { fetchHelper } from "./fetch-util";
 
-// export function UpdateComments() {
-// const [comments, setComments] = React.useState([]);
-// React.useEffect(() => {
-//   getComments(lesson.id).then((comments) => {
-//     setComments(comments);
-//     console.log(comments);
-//   });
-// }, []);
-// }
+export function getLessons() {
+  return fetchHelper("/api/lessons");
+}

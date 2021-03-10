@@ -27,35 +27,39 @@ export function CommentList({ lesson, ...props }) {
   }
 
   return (
-    <Box pt={2} w="98%" pl={6}>
-      <form method="post" onSubmit={submitComment}>
-        <Textarea
-          placeholder="Add Comment"
-          size="sm"
-          borderRadius="10px"
-          h={4}
-          value={newComment}
-          onChange={(event) => setNewComment(event.target.value)}
-          {...props}
-        />
-        <Button type="submit" h="29px">
-          Post
-        </Button>
-      </form>
-      <Box pt={2}>
-        {comments.map((comment) => (
-          <Box
-            borderBottom="1px"
-            _last={{ borderBottom: "none" }}
-            borderColor="purple.100"
-            pb={2}
-            key={comment.id}
-          >
-            <Text fontWeight="medium">{comment.user}</Text>
-            {comment.comment}
+    <>
+      {authenticated && (
+        <Box pt={2} w="98%" pl={6}>
+          <form method="post" onSubmit={submitComment}>
+            <Textarea
+              placeholder="Add Comment"
+              size="sm"
+              borderRadius="10px"
+              h={4}
+              value={newComment}
+              onChange={(event) => setNewComment(event.target.value)}
+              {...props}
+            />
+            <Button type="submit" h="29px">
+              Post
+            </Button>
+          </form>
+          <Box pt={2}>
+            {comments.map((comment) => (
+              <Box
+                borderBottom="1px"
+                _last={{ borderBottom: "none" }}
+                borderColor="purple.100"
+                pb={2}
+                key={comment.id}
+              >
+                <Text fontWeight="medium">{comment.user}</Text>
+                {comment.comment}
+              </Box>
+            ))}
           </Box>
-        ))}
-      </Box>
-    </Box>
+        </Box>
+      )}
+    </>
   );
 }

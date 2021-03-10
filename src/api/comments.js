@@ -1,14 +1,14 @@
+import { fetchHelper } from "./fetch-util";
+
 export function getComments(lessonId) {
-  return fetch(`api/get_comments/${lessonId}`).then((response) =>
-    response.json()
-  );
+  return fetchHelper(`api/get_comments/${lessonId}`);
 }
 
 export function createComment(lessonId, comment) {
-  fetch(`api/update_lesson_comment/${lessonId}`, {
+  return fetchHelper(`api/update_lesson_comment/${lessonId}`, {
     method: "POST",
     body: JSON.stringify({
       posts: comment,
     }),
-  }).then((response) => response.json());
+  });
 }

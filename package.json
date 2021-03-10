@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.1",
+    "cra-build-watch": "^3.4.0",
     "framer-motion": "^3.3.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -21,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "watch": "REACT_APP_MODE=django cra-build-watch --build-path /home/yvonne/development/Project5/Classroom/static/Classroom/react"
   },
   "eslintConfig": {
     "extends": [

@@ -1,7 +1,7 @@
 const user = JSON.parse(document.getElementById("user_info").innerHTML);
 
 export function getUser() {
-  return user;
+  return user.first_name;
 }
 
 export function getUserInitials() {
